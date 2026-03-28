@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://637w14xvej0w"]
+
+[ext_resource type="Script" uid="uid://c0kt8sciyu6ab" path="res://escenas/escena_principal.gd" id="1_733rl"]
+[ext_resource type="PackedScene" uid="uid://birbc83sah867" path="res://escenas/nivel_1/nivel_1.tscn" id="2_3tyi2"]
+[ext_resource type="PackedScene" uid="uid://bdcm7a0m52ele" path="res://escena_final/escena_final.tscn" id="2_uxd1d"]
+[ext_resource type="PackedScene" uid="uid://b11slylmouhxt" path="res://nivel2/nivel_2.tscn" id="3_imiid"]
+[ext_resource type="AudioStream" uid="uid://csyoql15iygaw" path="res://musica/musica.wav" id="5_hxpc2"]
+[ext_resource type="PackedScene" uid="uid://dwcu1coc0gxhu" path="res://escenas/ControladorPartida/controlador_partida.tscn" id="5_hytxr"]
+[ext_resource type="PackedScene" uid="uid://cojtkefabpx1v" path="res://Interfaz/contador_muertes.tscn" id="6_arkap"]
+[ext_resource type="Script" uid="uid://bsdjor4bnfhqi" path="res://escenas/controlador_pausa.gd" id="8_lgbs2"]
+
+[node name="EscenaPrincipal" type="Node2D" unique_id=2032109102 node_paths=PackedStringArray("controlador_partida")]
+script = ExtResource("1_733rl")
+niveles = Array[PackedScene]([ExtResource("2_3tyi2"), ExtResource("3_imiid"), ExtResource("2_uxd1d")])
+controlador_partida = NodePath("ControladorPartida")
+
+[node name="ControladorPartida" parent="." unique_id=1337508469 instance=ExtResource("5_hytxr")]
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1139513370]
+zoom = Vector2(2.56, 2.56)
+
+[node name="Musica" type="AudioStreamPlayer2D" parent="." unique_id=354912066]
+stream = ExtResource("5_hxpc2")
+autoplay = true
+bus = &"OST"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1870976019]
+
+[node name="ContadorMuertes" parent="CanvasLayer" unique_id=1881843177 instance=ExtResource("6_arkap")]
+offset_top = 33.72
+offset_bottom = 33.72
+
+[node name="ControladorPausa" type="Node" parent="." unique_id=665232357]
+process_mode = 3
+script = ExtResource("8_lgbs2")
